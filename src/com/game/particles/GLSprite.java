@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.microedition.khronos.opengles.GL10;
-//import javax.microedition.khronos.opengles.GL11Ext;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,7 +22,6 @@ public class GLSprite extends Renderable {
     
     public GLSprite(int resourceId) {
         super();
-        
         mResourceId = resourceId;
     }
     
@@ -70,12 +68,4 @@ public class GLSprite extends Renderable {
         return mTextureName;
 	}
     
-	/*
-    public void draw(GL10 gl) {
-        gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureName);
-        
-        // Draw using the DrawTexture extension.
-        ((GL11Ext) gl).glDrawTexfOES(pos.x, pos.y, pos.z, width, height);
-    }
-    */
 }
