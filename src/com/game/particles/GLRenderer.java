@@ -14,7 +14,7 @@ public class GLRenderer extends GLSurfaceView implements Renderer {
     public GLParticleSystem mParticleSystem;
     public GLCartesianLines mCartesianLines;
 
-	public final float TOUCH_SCALE = 0.2f;
+	public static final float TOUCH_SCALE = 0.2f;
     public float mOldX;
     public float mOldY;
     
@@ -55,8 +55,15 @@ public class GLRenderer extends GLSurfaceView implements Renderer {
 
 	public void onDrawFrame(GL10 gl) {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);	
-		gl.glLoadIdentity();
 
+		gl.glMatrixMode(GL10.GL_MODELVIEW);
+		gl.glLoadIdentity();		
+		
+        GLU.gluLookAt(	gl,
+				0.0f, -10.0f, 15.0f,
+				0.0f, 0.0f, 1.0f,
+				0.0f, 1.0f, 0.0f);	
+		
 		gl.glRotatef(mXRot, 1.0f, 0.0f, 0.0f);
 		gl.glRotatef(mYRot, 0.0f, 1.0f, 0.0f);
 		
@@ -75,15 +82,7 @@ public class GLRenderer extends GLSurfaceView implements Renderer {
 		// setup projection matrix
 		gl.glMatrixMode(GL10.GL_PROJECTION);
 		gl.glLoadIdentity();
-        GLU.gluPerspective(gl, 30.0f, (float)width / (float)height, 1.0f, 100.0f);        
-        GLU.gluLookAt(	gl,
-        				0.0f, -10.0f, 15.0f,
-        				0.0f, 0.0f, 1.0f,
-        				0.0f, 1.0f, 0.0f);
-        
-		// setup model matrix
-	    gl.glMatrixMode(GL10.GL_MODELVIEW);
-	    gl.glLoadIdentity();
+        GLU.gluPerspective(gl, 30.0f, (float)width / (float)height, 1.0f, 100.0f);
 	}
 	
 	@Override
